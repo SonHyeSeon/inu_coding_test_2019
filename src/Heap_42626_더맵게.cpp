@@ -17,19 +17,17 @@ int solution(vector<int> scoville, int K) {
 		q.emplace(scoville.at(i));
 
 	int flag = 0;
-	while (q.top() < K && !flag)
+	while (q.top() < K)
 	{
-		if (q.size() == 1 && q.top() < K)
+		if (q.size() == 1 && q.top() < K) {
 			flag = 1;
+			break;
+		}
 		else {
 			int first = q.top(); q.pop();
 			int second = q.top(); q.pop();
-			if (first == 0 && second == 0)
-				flag = 1;
-			else {
-				q.emplace(first + second * 2);
-				answer++;
-			}
+			q.emplace(first + second * 2);
+			answer++;
 		}
 	}
 	if (flag == 1)
@@ -47,9 +45,13 @@ int main()
 	//vector<int> input = { 0,0,1 };
 	//int k = 1;
 
-	// testcase # 3 : 2
-	vector<int> input = { 1,2,3,9,10,12 };
-	int k = 7;
+	//// testcase # 3 : 2
+	//vector<int> input = { 1,2,3,9,10,12 };
+	//int k = 7;
+
+	// testcase # 4 : 2
+	vector<int> input = {0,0,3};
+	int k = 3;
 
 	cout << solution(input, k) << endl;
 
